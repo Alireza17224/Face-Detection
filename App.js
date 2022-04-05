@@ -207,6 +207,9 @@ app.post('/login', urlencodedParser,async (req, res) => {
     })()
     const controller = (function(){
         function init(){
+            if (!fs.existsSync(`${__dirname}${path.sep}login-images`)){
+                fs.mkdirSync(`${__dirname}${path.sep}login-images`)
+            }    
             // Getting the Request
             let dataFromUserNowWebcam = [{}];
             if (fs.existsSync(`${__dirname}${path.sep}Database.json`)){
@@ -443,6 +446,9 @@ app.post('/register', (req, res) => {
   })()
   const controller = (function(){
       async function init(){
+        if (!fs.existsSync(`${__dirname}${path.sep}register-images`)){
+            fs.mkdirSync(`${__dirname}${path.sep}register-images`)
+        }
           let data = await model.validateIMG()
           if (data.status == 0){
               res.status(400).send(data)
@@ -460,5 +466,5 @@ app.post('/register', (req, res) => {
   })
   
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`Face Detection Api listening at http://localhost:${port}`)
 })
