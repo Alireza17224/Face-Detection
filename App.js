@@ -147,7 +147,7 @@ app.post('/login', urlencodedParser,async (req, res) => {
                         let DescriptorSecond = detections[0].descriptor;
                         let token = Object.values(databaseData)[i].Token;
                         let response = await faceMatch(DescriptorFirstCorrect,DescriptorSecond,token);
-                        console.log(i);
+                        console.log(response);
                         if (response.status == 1){
                             elements.isMatched = response;
                             j == 0 ? finishAPI(elements.isMatched) : j = 1
